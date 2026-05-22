@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://neverness-to-everness-tools.online/sitemap.xml
