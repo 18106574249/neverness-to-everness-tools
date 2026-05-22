@@ -35,9 +35,79 @@
         <div class="ad-banner" style="text-align:center;padding:1rem;background:var(--bg-card);border-radius:var(--radius);margin-bottom:1.5rem;color:var(--text-dim);font-size:0.85rem;">
             📢 AD SPACE – Google AdSense Banner
         </div>
-        <h1 style="font-size:2rem;margin-bottom:0.3rem;">✅ NTE <span class="hl">Tools</span></h1>
-        <p style="color:var(--text-dim);margin-bottom:2rem;">Daily task tracker for NTE. Content coming soon!</p>
+
+        <h1 style="font-size:2rem;margin-bottom:0.3rem;">✅ NTE <span class="hl">Daily Checklist</span> – Tasks & Stamina Tracker</h1>
+        <p style="color:var(--text-dim);margin-bottom:1.5rem;">Never miss a single reward. Reset: <strong>4:00 AM server time</strong>. Updated: <strong>May 22, 2026</strong></p>
+
+        <div class="card" style="margin-bottom:1rem;">
+            <h2 style="margin-bottom:0.8rem;">🌅 Daily Tasks</h2>
+            <div class="checklist" id="daily">
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Claim Login Rewards</strong> – Daily login bonus + event claims</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Participation Tasks</strong> – 100 Daily Activity Points for max rewards</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Spend Character Pixels</strong> (Stamina) – Don't let it cap!</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Daily Quests</strong> – Hunter EXP + Fons</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Exploration Guide Tasks</strong> – Complete daily objectives</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Manage Cafe</strong> – Collect Fons income from your apartment</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Circle Bounty</strong> – Daily Battle Pass quests</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Collect Apartment Resources</strong> – Furniture passive rewards</label>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom:1rem;">
+            <h2 style="margin-bottom:0.8rem;">📋 Weekly Tasks</h2>
+            <div class="checklist" id="weekly">
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Blime Marmon</strong> (Weekly Boss) – Upgrade materials</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Visit Auction Halls</strong> – Limited-time deals</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Weekly Stamina Challenges</strong> – Extra rewards</label>
+                <label class="check-item"><input type="checkbox" onchange="saveChecks()"> <strong>Clear Weekly Quests</strong> – Bonus Fons + Annulith</label>
+            </div>
+        </div>
+
+        <div class="ad-banner" style="text-align:center;padding:1rem;background:var(--bg-card);border-radius:var(--radius);margin-bottom:1.5rem;color:var(--text-dim);font-size:0.85rem;">
+            📢 AD SPACE – Google AdSense Banner
+        </div>
+
+        <div class="card" style="margin-bottom:1.5rem;">
+            <h2 style="margin-bottom:0.8rem;">📊 Progress</h2>
+            <div style="margin-bottom:0.5rem;">
+                <span id="progress" style="font-size:1.5rem;font-weight:900;color:var(--hl);">0%</span>
+                <span style="color:var(--text-dim);"> complete</span>
+            </div>
+            <div style="height:8px;background:var(--bg-card);border-radius:4px;overflow:hidden;">
+                <div id="progress-bar" style="height:100%;width:0%;background:var(--hl);border-radius:4px;transition:width 0.3s;"></div>
+            </div>
+            <button class="btn" onclick="resetChecks()" style="margin-top:1rem;">🔄 Reset All</button>
+        </div>
     </main>
+
+    <script>
+        function saveChecks() {
+            var checks = document.querySelectorAll('.check-item input');
+            var states = {};
+            checks.forEach(function(c, i) { states[i] = c.checked; });
+            localStorage.setItem('nte-daily-checklist', JSON.stringify(states));
+            updateProgress();
+        }
+        function loadChecks() {
+            var data = JSON.parse(localStorage.getItem('nte-daily-checklist') || '{}');
+            var checks = document.querySelectorAll('.check-item input');
+            checks.forEach(function(c, i) { if (data[i]) c.checked = true; });
+            updateProgress();
+        }
+        function updateProgress() {
+            var checks = document.querySelectorAll('.check-item input');
+            var checked = Array.from(checks).filter(function(c) { return c.checked; }).length;
+            var pct = Math.round((checked / checks.length) * 100);
+            document.getElementById('progress').textContent = pct + '%';
+            document.getElementById('progress-bar').style.width = pct + '%';
+        }
+        function resetChecks() {
+            document.querySelectorAll('.check-item input').forEach(function(c) { c.checked = false; });
+            localStorage.removeItem('nte-daily-checklist');
+            updateProgress();
+        }
+        loadChecks();
+    </script>
     <footer>
         <div class="footer-content">
             <p>🌀 <strong>NTE Tools</strong> – Fan-made. Not affiliated with Hotta Studio.</p>
