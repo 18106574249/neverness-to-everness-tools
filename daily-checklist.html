@@ -40,7 +40,24 @@
 
 
         <h1 style="font-size:2rem;margin-bottom:0.3rem;">NTE <span class="hl">Daily Checklist</span> - Daily Tasks & Waveplate Tracker</h1>
-        <p style="color:var(--text-dim);margin-bottom:1.5rem;">Never miss dailies, waveplates, or event rewards. All progress saved locally in your browser.</p>
+        <p style="color:var(--text-dim);margin-bottom:0.5rem;">Never miss dailies, waveplates, or event rewards. All progress saved locally in your browser.</p>
+
+        <div class="wuwa-timer">
+            <h3>⏰ Server Reset Timer</h3>
+            <p style="color:var(--text-dim);margin-bottom:0.3rem;">Server time (UTC+8): <strong class="timer-server" style="color:var(--hl);">Loading...</strong></p>
+            <div class="timer-grid">
+                <div class="timer-card">
+                    <div class="timer-label">Daily Reset</div>
+                    <div class="timer-value timer-daily">--:--:--</div>
+                    <div class="timer-unit">until 04:00 server time</div>
+                </div>
+                <div class="timer-card">
+                    <div class="timer-label">Weekly Reset</div>
+                    <div class="timer-value timer-weekly">--d --h</div>
+                    <div class="timer-unit">until Monday 04:00</div>
+                </div>
+            </div>
+        </div>
         <div class="card" style="margin-bottom:1.5rem;padding:1.2rem;">
             <p style="line-height:1.7;">Completing daily tasks in Neverness to Everness is the most efficient way to earn premium currency, upgrade materials, and account XP. This checklist covers all daily activities with estimated time requirements. Check off tasks as you complete them - your progress is saved automatically in your browser.</p>
         </div>
@@ -82,12 +99,49 @@
         </section>
 
     </main>
-    <footer>
+        <footer>
         <div class="footer-content">
-            <p><strong>NTE Tools</strong> - Fan-made. Not affiliated with Hotta Studio.</p>
-            <div class="footer-links"><a href="/">Home</a> | <a href="codes.html">Codes</a> | <a href="tier-list.html">Tier List</a> | <a href="guide-beginners.html">Guide</a> | <a href="privacy.html">Privacy</a> | <a href="contact.html">Contact</a> | <a href="terms.html">Terms</a></div>
+            <div class="footer-col">
+                <h4>NTE Tools</h4>
+                <a href="/">Home</a>
+                <a href="codes.html">Active Codes</a>
+                <a href="tier-list.html">Tier List</a>
+                <a href="guide-beginners.html">Beginner Guide</a>
+            </div>
+            <div class="footer-col">
+                <h4>Database</h4>
+                <a href="characters.html">Resonators</a>
+                <a href="weapons.html">Weapons</a>
+                <a href="echoes.html">Echoes</a>
+                <a href="banners.html">Banner Schedule</a>
+            </div>
+            <div class="footer-col">
+                <h4>Tools</h4>
+                <a href="daily-checklist.html">Daily Checklist</a>
+                <a href="farming-guide.html">Farming Guide</a>
+                <a href="events.html">Events Calendar</a>
+                <a href="/#timer">Reset Timer</a>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <a href="https://discord.gg/nevernesseverness" target="_blank" rel="noopener">💬 Official Discord</a>
+                <a href="https://reddit.com/r/NevernessToEverness" target="_blank" rel="noopener">📱 Reddit</a>
+                <a href="contact.html">📧 Contact / Feedback</a>
+                <a href="https://github.com/18106574249/neverness-to-everness-tools" target="_blank" rel="noopener">🐛 Report Issue</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <strong>NTE Tools</strong> — Fan-made community resource. Not affiliated with Hotta Studio. | <a href="/">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a>
         </div>
     </footer>
+    <script src="main.js"></script>
+    <script src="timer.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
