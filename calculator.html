@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pull Calculator - NTE Annulith & Pull Income Calculator</title>
+    <meta name="description" content="Calculate how many pulls you can get this patch in Neverness to Everness. Annulith income calculator with daily activities, events, battle pass, and more.">
+    <meta property="og:title" content="NTE Pull Calculator - Annulith Income & Pull Counter">
+    <meta property="og:description" content="Calculate your total pulls this patch in Neverness to Everness. Free income calculator.">
+    <meta property="og:url" content="https://neverness-to-everness-tools.online/calculator.html">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"NTE Pull Calculator","description":"Calculate how many pulls you can get this patch in Neverness to Everness","applicationCategory":"GameApplication","operatingSystem":"Web"}
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="logo"><span class="hl">NTE</span>Tools</a>
+            <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="codes.html">Codes</a>
+                <a href="tier-list.html">Tier List</a>
+                <a href="characters.html">Resonators</a>
+                <a href="weapons.html">Weapons</a>
+                <a href="echoes.html">Echoes</a>
+                <a href="daily-checklist.html">Daily</a>
+                <a href="guide-beginners.html">Guide</a>
+                <a href="farming-guide.html">Farming</a>
+                <a href="events.html">Events</a>
+                <a href="banners.html">Banners</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep">›</span><span class="current">Pull Calculator</span></nav>
+
+        <section class="section" style="max-width:var(--max-w);margin:0 auto;padding:2.5rem 1.2rem;">
+            <h1 style="font-size:2rem;margin-bottom:0.3rem;">🎯 NTE <span class="hl">Pull Calculator</span></h1>
+            <p style="color:var(--text-dim);margin-bottom:1.5rem;">Calculate your total pulls for the current patch. Fill in your resources and check off what you'll complete.</p>
+
+            <div class="card" style="padding:1.5rem;">
+                <form id="pull-calc">
+                    <h3 style="margin-bottom:1rem;">💰 Current Resources</h3>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;">
+                        <div>
+                            <label style="display:block;font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;">Current Annulith</label>
+                            <input type="number" id="current-astrite" value="0" min="0" step="10" style="width:100%;padding:0.5rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:1rem;">
+                        </div>
+                        <div>
+                            <label style="display:block;font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;">Character Pull Tickets</label>
+                            <input type="number" id="current-lustrous" value="0" min="0" step="1" style="width:100%;padding:0.5rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:1rem;">
+                        </div>
+                        <div>
+                            <label style="display:block;font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;">Weapon Pull Tickets</label>
+                            <input type="number" id="current-radiant" value="0" min="0" step="1" style="width:100%;padding:0.5rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:1rem;">
+                        </div>
+                    </div>
+
+                    <h3 style="margin-bottom:1rem;">📅 This Patch Income</h3>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.8rem;margin-bottom:1.5rem;">
+                        <label class="calc-check"><input type="checkbox" id="daily-active" checked> Daily Activities (42 days)</label>
+                        <label class="calc-check"><input type="checkbox" id="abyss" checked> Endgame Reset</label>
+                        <label class="calc-check"><input type="checkbox" id="patch-events" checked> Patch Events</label>
+                        <label class="calc-check"><input type="checkbox" id="livestream" checked> Livestream Codes</label>
+                        <label class="calc-check"><input type="checkbox" id="maintenance" checked> Maintenance Comp.</label>
+                        <label class="calc-check"><input type="checkbox" id="battle-pass" checked> Battle Pass (paid)</label>
+                        <label class="calc-check"><input type="checkbox" id="shop-tides" checked> Pity Shop (5 tickets)</label>
+                        <label class="calc-check"><input type="checkbox" id="patch-mail" checked> Mail Rewards</label>
+                        <label class="calc-check"><input type="checkbox" id="web-events" checked> Web Events</label>
+                    </div>
+
+                    <h3 style="margin-bottom:1rem;">⚙️ Custom Settings</h3>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;">
+                        <div>
+                            <label style="display:block;font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;">Endgame Resets (/patch)</label>
+                            <input type="number" id="abyss-count" value="2" min="0" max="6" step="1" style="width:100%;padding:0.5rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:1rem;">
+                        </div>
+                        <div>
+                            <label style="display:block;font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;">Exploration / Other</label>
+                            <input type="number" id="exploration-value" value="0" min="0" step="100" style="width:100%;padding:0.5rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:1rem;">
+                        </div>
+                    </div>
+                </form>
+
+                <div id="pull-result">
+                    <div class="calc-results">
+                        <p style="color:var(--text-dim);">Adjust values above to see your total pulls.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:1.5rem;padding:1.5rem;">
+                <h3>❓ How to Use</h3>
+                <ol style="padding-left:1.2rem;line-height:1.8;color:var(--text-dim);">
+                    <li>Enter your current <strong style="color:var(--text);">Annulith</strong> and <strong style="color:var(--text);">pull tickets</strong> from your in-game wallet.</li>
+                    <li>Check which activities you plan to complete this patch.</li>
+                    <li>Set the number of <strong style="color:var(--text);">Endgame Resets</strong> you'll do.</li>
+                    <li>Add any <strong style="color:var(--text);">Exploration</strong> currency you plan to farm.</li>
+                    <li>The calculator updates in real-time.</li>
+                </ol>
+                <p style="margin-top:1rem;font-size:0.85rem;color:var(--text-dim);">💡 <strong style="color:var(--hl);">Tip:</strong> Save up for characters you want. Estimated F2P income is ~80-100 pulls per patch.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>NTE Tools</h4>
+                <a href="/">Home</a>
+                <a href="codes.html">Active Codes</a>
+                <a href="tier-list.html">Tier List</a>
+                <a href="guide-beginners.html">Beginner Guide</a>
+            </div>
+            <div class="footer-col">
+                <h4>Database</h4>
+                <a href="characters.html">Resonators</a>
+                <a href="weapons.html">Weapons</a>
+                <a href="echoes.html">Echoes</a>
+                <a href="banners.html">Banner Schedule</a>
+            </div>
+            <div class="footer-col">
+                <h4>Tools</h4>
+                <a href="daily-checklist.html">Daily Checklist</a>
+                <a href="farming-guide.html">Farming Guide</a>
+                <a href="events.html">Events Calendar</a>
+                <a href="calculator.html">Pull Calculator</a>
+                <a href="/#timer">Reset Timer</a>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <a href="https://discord.gg/nevernesseverness" target="_blank" rel="noopener">💬 Official Discord</a>
+                <a href="https://reddit.com/r/NevernessToEverness" target="_blank" rel="noopener">📱 Reddit</a>
+                <a href="contact.html">📧 Contact / Feedback</a>
+                <a href="https://github.com/18106574249/neverness-to-everness-tools" target="_blank" rel="noopener">🐛 Report Issue</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <strong>NTE Tools</strong> — Fan-made community resource. Not affiliated with Hotta Studio. | <a href="/">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+    <script src="calculator.js"></script>
+</body>
+</html>
